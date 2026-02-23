@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html class="dark" lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Vibe Coding | Post List</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d59f2",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .glass-nav {
+            background: rgba(16, 22, 34, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(13, 89, 242, 0.15) 0%, rgba(16, 22, 34, 1) 70%);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased selection:bg-primary/30 min-h-screen">
+    <nav class="fixed top-0 w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3 group cursor-pointer" onclick="location.href='/'">
+                <div class="p-2 bg-primary rounded-lg text-white">
+                    <span class="material-symbols-outlined block">terminal</span>
+                </div>
+                <span class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">Vibe Coding</span>
+            </div>
+            <div class="hidden md:flex items-center gap-10">
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="/">Home</a>
+                <a class="text-sm font-medium text-primary" href="/posts">Posts</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Community</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative pt-32 pb-20 overflow-hidden min-h-screen">
+        <div class="absolute inset-0 z-0 pointer-events-none">
+            <div class="hero-gradient absolute inset-0"></div>
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 blur-[120px] rounded-full"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-500/10 blur-[120px] rounded-full"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
+            <div class="mb-12">
+                <h1 class="text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4">Post List</h1>
+                <p class="text-slate-400 text-lg">Explore our shared community knowledge and stories.</p>
+            </div>
+
+            <div class="relative overflow-hidden bg-slate-900/50 rounded-2xl border border-white/10 backdrop-blur-sm">
+                <table class="w-full text-left">
+                    <thead>
+                        <tr class="border-b border-white/10 bg-slate-800/50">
+                            <th class="px-6 py-4 text-sm font-bold text-slate-300 uppercase tracking-widest">No</th>
+                            <th class="px-6 py-4 text-sm font-bold text-slate-300 uppercase tracking-widest">Title</th>
+                            <th class="px-6 py-4 text-sm font-bold text-slate-300 uppercase tracking-widest">Created At
+                            </th>
+                            <th class="px-6 py-4 text-sm font-bold text-slate-300 uppercase tracking-widest">Views</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/5">
+                        <tr th:each="post : ${posts}" class="hover:bg-white/5 transition-colors group">
+                            <td class="px-6 py-5 text-slate-400 font-mono" th:text="${post.no}">1</td>
+                            <td class="px-6 py-5">
+                                <span class="text-white font-medium group-hover:text-primary transition-colors"
+                                    th:text="${post.title}">Title here</span>
+                            </td>
+                            <td class="px-6 py-5 text-slate-400 text-sm"
+                                th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm')}">2023-01-01</td>
+                            <td class="px-6 py-5">
+                                <div
+                                    class="inline-flex items-center gap-2 px-2 py-1 rounded bg-slate-800 text-xs font-bold text-slate-400">
+                                    <span class="material-symbols-outlined text-[14px]">visibility</span>
+                                    <span th:text="${post.views}">100</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
