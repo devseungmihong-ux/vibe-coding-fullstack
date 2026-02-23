@@ -30,6 +30,13 @@ public class PostService {
         }
     }
 
+    public Post getPost(Long no) {
+        Post post = postRepository.findByNo(no)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid post number: " + no));
+        post.setViews(post.getViews() + 1);
+        return post;
+    }
+
     public List<Post> getAllPosts() {
         return postRepository.findAll();
     }
