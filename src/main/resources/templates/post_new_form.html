@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Vibe Coding | Post List</title>
+    <title>Vibe Coding | New Post</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
         rel="stylesheet" />
@@ -62,7 +62,7 @@
             </div>
             <div class="hidden md:flex items-center gap-10">
                 <a class="text-sm font-medium hover:text-primary transition-colors" href="/">Home</a>
-                <a class="text-sm font-medium text-primary" href="/posts">Posts</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="/posts">Posts</a>
                 <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Community</a>
             </div>
         </div>
@@ -75,50 +75,40 @@
             <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-500/10 blur-[120px] rounded-full"></div>
         </div>
 
-        <div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
-            <div class="mb-12 flex items-center justify-between">
-                <div>
-                    <h1 class="text-4xl lg:text-5xl font-bold tracking-tight text-white mb-4">Post List</h1>
-                    <p class="text-slate-400 text-lg">Explore our shared community knowledge and stories.</p>
-                </div>
-                <button onclick="location.href='/posts/new'"
-                    class="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-xl text-sm font-bold shadow-lg shadow-primary/20 transition-all">
-                    <span class="material-symbols-outlined text-[20px]">add</span>
-                    New Post
-                </button>
+        <div class="relative z-10 max-w-3xl mx-auto px-6 w-full">
+            <div class="mb-12">
+                <h1 class="text-4xl font-bold tracking-tight text-white mb-4">Create New Post</h1>
+                <p class="text-slate-400 text-lg">Share your ideas with the community in a beautifully crafted space.
+                </p>
             </div>
 
-            <div class="relative overflow-hidden bg-slate-900/50 rounded-2xl border border-white/10 backdrop-blur-sm">
-                <table class="w-full text-left">
-                    <thead>
-                        <tr class="border-b border-white/10 bg-slate-800/50">
-                            <th class="px-6 py-4 text-sm font-bold text-slate-300 uppercase tracking-widest">No</th>
-                            <th class="px-6 py-4 text-sm font-bold text-slate-300 uppercase tracking-widest">Title</th>
-                            <th class="px-6 py-4 text-sm font-bold text-slate-300 uppercase tracking-widest">Created At
-                            </th>
-                            <th class="px-6 py-4 text-sm font-bold text-slate-300 uppercase tracking-widest">Views</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-white/5">
-                        <tr th:each="post : ${posts}" class="hover:bg-white/5 transition-colors group">
-                            <td class="px-6 py-5 text-slate-400 font-mono" th:text="${post.no}">1</td>
-                            <td class="px-6 py-5">
-                                <a th:href="@{'/posts/' + ${post.no}}"
-                                    class="text-white font-medium group-hover:text-primary transition-colors underline-offset-4 hover:underline"
-                                    th:text="${post.title}">Title here</a>
-                            </td>
-                            <td class="px-6 py-5 text-slate-400 text-sm"
-                                th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm')}">2023-01-01</td>
-                            <td class="px-6 py-5">
-                                <div
-                                    class="inline-flex items-center gap-2 px-2 py-1 rounded bg-slate-800 text-xs font-bold text-slate-400">
-                                    <span class="material-symbols-outlined text-[14px]">visibility</span>
-                                    <span th:text="${post.views}">100</span>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="bg-slate-900/50 rounded-2xl border border-white/10 backdrop-blur-sm p-8 shadow-2xl">
+                <form id="postForm" onsubmit="event.preventDefault(); alert('새 게시글 등록');" class="space-y-8">
+                    <div class="space-y-2">
+                        <label for="title"
+                            class="block text-sm font-bold text-slate-300 uppercase tracking-widest">Title</label>
+                        <input type="text" id="title" name="title" required placeholder="Enter post title"
+                            class="w-full bg-slate-800/50 border border-white/10 rounded-xl px-6 py-4 text-white placeholder-slate-500 focus:outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/10 transition-all" />
+                    </div>
+
+                    <div class="space-y-2">
+                        <label for="content"
+                            class="block text-sm font-bold text-slate-300 uppercase tracking-widest">Content</label>
+                        <textarea id="content" name="content" rows="8" required placeholder="Write your content here..."
+                            class="w-full bg-slate-800/50 border border-white/10 rounded-xl px-6 py-4 text-white placeholder-slate-500 focus:outline-none focus:border-primary/50 focus:ring-4 focus:ring-primary/10 transition-all resize-none"></textarea>
+                    </div>
+
+                    <div class="flex items-center gap-4 pt-4">
+                        <button type="submit"
+                            class="flex-1 bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl text-lg font-bold shadow-lg shadow-primary/20 transition-all">
+                            Register
+                        </button>
+                        <button type="button" onclick="location.href='/posts'"
+                            class="flex-1 bg-slate-800 hover:bg-slate-700 text-white px-8 py-4 rounded-xl text-lg font-bold transition-all">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </main>
