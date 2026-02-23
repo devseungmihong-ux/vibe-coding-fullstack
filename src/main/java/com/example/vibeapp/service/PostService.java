@@ -42,4 +42,21 @@ public class PostService {
                 .sorted(java.util.Comparator.comparingLong(Post::getNo).reversed())
                 .toList();
     }
+
+    public void addPost(String title, String content) {
+        long nextNo = postRepository.findAll().stream()
+                .mapToLong(Post::getNo)
+                .max()
+                .orElse(0L) + 1;
+
+        Post post = new Post();
+        post.setNo(nextNo);
+        post.setTitle(title);
+        post.setContent(content);
+        post.setCreatedAt(java.time.LocalDateTime.now());
+        post.setUpdatedAt(null);
+        post.setViews(0);
+
+        postRepository.save(post);
+    }
 }

@@ -83,7 +83,7 @@
             </div>
 
             <div class="bg-slate-900/50 rounded-2xl border border-white/10 backdrop-blur-sm p-8 shadow-2xl">
-                <form id="postForm" onsubmit="event.preventDefault(); alert('새 게시글 등록');" class="space-y-8">
+                <form id="postForm" action="/posts/add" method="POST" class="space-y-8">
                     <div class="space-y-2">
                         <label for="title"
                             class="block text-sm font-bold text-slate-300 uppercase tracking-widest">Title</label>
