@@ -95,6 +95,10 @@
                         class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm font-bold transition-all">
                         Edit
                     </button>
+                    <button th:onclick="|if(confirm('정말 삭제하시겠습니까?')) location.href='/posts/${post.no}/delete'|"
+                        class="bg-rose-500 hover:bg-rose-600 text-white px-4 py-2 rounded-lg text-sm font-bold transition-all">
+                        Delete
+                    </button>
                     <button onclick="location.href='/posts'"
                         class="bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-lg text-sm font-bold transition-all">
                         List
