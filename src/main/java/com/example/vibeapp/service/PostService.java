@@ -20,13 +20,12 @@ public class PostService {
     public void init() {
         for (int i = 1; i <= 10; i++) {
             postRepository.save(new Post(
-                (long) i,
-                "Example Post " + i,
-                "This is the content for example post " + i,
-                LocalDateTime.now().minusDays(10 - i),
-                LocalDateTime.now().minusDays(10 - i),
-                i * 10
-            ));
+                    (long) i,
+                    "Example Post " + i,
+                    "This is the content for example post " + i,
+                    LocalDateTime.now().minusDays(10 - i),
+                    LocalDateTime.now().minusDays(10 - i),
+                    i * 10));
         }
     }
 
@@ -58,5 +57,12 @@ public class PostService {
         post.setViews(0);
 
         postRepository.save(post);
+    }
+
+    public void updatePost(Long no, String title, String content) {
+        Post post = getPost(no);
+        post.setTitle(title);
+        post.setContent(content);
+        post.setUpdatedAt(LocalDateTime.now());
     }
 }

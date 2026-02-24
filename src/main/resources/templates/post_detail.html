@@ -90,11 +90,16 @@
                         </span>
                     </div>
                 </div>
-                <button onclick="location.href='/posts'"
-                    class="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-lg text-sm font-bold transition-all">
-                    <span class="material-symbols-outlined text-[18px]">list</span>
-                    Back to List
-                </button>
+                <div class="flex gap-2">
+                    <button th:onclick="|location.href='/posts/${post.no}/edit'|"
+                        class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm font-bold transition-all">
+                        Edit
+                    </button>
+                    <button onclick="location.href='/posts'"
+                        class="bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-lg text-sm font-bold transition-all">
+                        List
+                    </button>
+                </div>
             </div>
 
             <div class="bg-slate-900/50 rounded-2xl border border-white/10 backdrop-blur-sm p-8 shadow-2xl">
