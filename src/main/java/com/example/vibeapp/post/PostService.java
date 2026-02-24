@@ -57,7 +57,7 @@ public class PostService {
         return (int) Math.ceil((double) totalPosts / size);
     }
 
-    public void addPost(String title, String content) {
+    public void createPost(String title, String content) {
         long nextNo = postRepository.findAll().stream()
                 .mapToLong(Post::getNo)
                 .max()
