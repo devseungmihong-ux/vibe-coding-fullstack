@@ -117,7 +117,35 @@
                             </td>
                         </tr>
                     </tbody>
-                </table>
+            </div>
+
+            <!-- Pagination Navigation -->
+            <div th:if="${totalPages > 1}" class="mt-8 flex items-center justify-center gap-2">
+                <!-- Previous Button -->
+                <a th:href="@{/posts(page=${currentPage - 1})}"
+                    th:classappend="${currentPage == 1} ? 'pointer-events-none opacity-30' : 'hover:bg-primary/20 hover:text-primary'"
+                    class="flex items-center gap-1 px-4 py-2 rounded-lg bg-slate-900 border border-white/10 text-slate-400 text-sm font-bold transition-all">
+                    <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+                    Prev
+                </a>
+
+                <!-- Page Numbers -->
+                <div class="flex items-center gap-1">
+                    <a th:each="pageNum : ${#numbers.sequence(1, totalPages)}" th:href="@{/posts(page=${pageNum})}"
+                        th:text="${pageNum}"
+                        th:classappend="${pageNum == currentPage} ? 'bg-primary text-white border-primary shadow-lg shadow-primary/20' : 'bg-slate-900 border-white/10 text-slate-400 hover:bg-primary/20 hover:text-primary hover:border-primary/50'"
+                        class="w-10 h-10 flex items-center justify-center rounded-lg border text-sm font-bold transition-all">
+                        1
+                    </a>
+                </div>
+
+                <!-- Next Button -->
+                <a th:href="@{/posts(page=${currentPage + 1})}"
+                    th:classappend="${currentPage == totalPages} ? 'pointer-events-none opacity-30' : 'hover:bg-primary/20 hover:text-primary'"
+                    class="flex items-center gap-1 px-4 py-2 rounded-lg bg-slate-900 border border-white/10 text-slate-400 text-sm font-bold transition-all">
+                    Next
+                    <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+                </a>
             </div>
         </div>
     </main>

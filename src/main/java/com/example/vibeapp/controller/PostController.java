@@ -14,8 +14,12 @@ public class PostController {
     }
 
     @GetMapping("/posts")
-    public String list(Model model) {
-        model.addAttribute("posts", postService.getAllPosts());
+    public String list(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
+        int pageSize = 5;
+        model.addAttribute("posts", postService.getPaginatedPosts(page, pageSize));
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", postService.getTotalPages(pageSize));
+        model.addAttribute("pageSize", pageSize);
         return "posts";
     }
 

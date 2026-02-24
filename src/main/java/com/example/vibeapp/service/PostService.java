@@ -42,6 +42,23 @@ public class PostService {
                 .toList();
     }
 
+    public List<Post> getPaginatedPosts(int page, int size) {
+        List<Post> allPosts = getAllPosts();
+        int fromIndex = (page - 1) * size;
+        if (fromIndex >= allPosts.size()) {
+            return List.of();
+        }
+        int toIndex = Math.min(fromIndex + size, allPosts.size());
+        return allPosts.subList(fromIndex, toIndex);
+    }
+
+    public int getTotalPages(int size) {
+        int totalPosts = postRepository.findAll().size();
+        if (totalPosts == 0)
+            return 1;
+        return (int) Math.ceil((double) totalPosts / size);
+    }
+
     public void addPost(String title, String content) {
         long nextNo = postRepository.findAll().stream()
                 .mapToLong(Post::getNo)
