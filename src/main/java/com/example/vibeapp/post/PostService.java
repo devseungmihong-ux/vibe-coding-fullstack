@@ -1,7 +1,5 @@
-package com.example.vibeapp.service;
+package com.example.vibeapp.post;
 
-import com.example.vibeapp.domain.Post;
-import com.example.vibeapp.repository.PostRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 
