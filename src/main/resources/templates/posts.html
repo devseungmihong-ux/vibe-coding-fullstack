@@ -124,9 +124,8 @@
                 <!-- Previous Button -->
                 <a th:href="@{/posts(page=${currentPage - 1})}"
                     th:classappend="${currentPage == 1} ? 'pointer-events-none opacity-30' : 'hover:bg-primary/20 hover:text-primary'"
-                    class="flex items-center gap-1 px-4 py-2 rounded-lg bg-slate-900 border border-white/10 text-slate-400 text-sm font-bold transition-all">
-                    <span class="material-symbols-outlined text-[18px]">chevron_left</span>
-                    Prev
+                    class="flex items-center justify-center w-10 h-10 rounded-lg bg-slate-900 border border-white/10 text-slate-400 transition-all">
+                    <span class="material-symbols-outlined text-[20px]">chevron_left</span>
                 </a>
 
                 <!-- Page Numbers -->
@@ -142,9 +141,8 @@
                 <!-- Next Button -->
                 <a th:href="@{/posts(page=${currentPage + 1})}"
                     th:classappend="${currentPage == totalPages} ? 'pointer-events-none opacity-30' : 'hover:bg-primary/20 hover:text-primary'"
-                    class="flex items-center gap-1 px-4 py-2 rounded-lg bg-slate-900 border border-white/10 text-slate-400 text-sm font-bold transition-all">
-                    Next
-                    <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+                    class="flex items-center justify-center w-10 h-10 rounded-lg bg-slate-900 border border-white/10 text-slate-400 transition-all">
+                    <span class="material-symbols-outlined text-[20px]">chevron_right</span>
                 </a>
             </div>
         </div>
